@@ -12,6 +12,8 @@
     // - https://codesandbox.io/p/sandbox/youtube-iframe-player-api-demo-0wqvi?file=%2Fjs%2Findex.js
     // - https://developers.google.com/youtube/youtube_player_demo
     // - https://nutbread.github.io/yia/
+
+    // - https://youtu.be/rsmLu5nmh4g?si=BBnHVl4ZiXjjzdlJ&t=216
 </script>
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
