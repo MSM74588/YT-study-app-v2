@@ -13,7 +13,8 @@
     // - https://developers.google.com/youtube/youtube_player_demo
     // - https://nutbread.github.io/yia/
 
-    // - https://youtu.be/rsmLu5nmh4g?si=BBnHVl4ZiXjjzdlJ&t=216
+    // - https://youtu.be/rsmLu5nmh4g?si=BBnHVl4ZiXjjzdlJ&t=216 (!important)
+    //  - https://cheatcode.co/tutorials/how-to-encrypt-and-decrypt-text-with-node-js
 </script>
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
