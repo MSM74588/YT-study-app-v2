@@ -33,6 +33,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource-variable/rubik": "^5.0.20",
+		"@fontsource-variable/space-grotesk": "^5.0.16",
 		"svelte-legos": "^0.2.2"
 	}
 }
