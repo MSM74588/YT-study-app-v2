@@ -29,6 +29,6 @@ Bookmarks
 - https://youtu.be/rsmLu5nmh4g?si=BBnHVl4ZiXjjzdlJ&t=216 (!important)
 - https://cheatcode.co/tutorials/how-to-encrypt-and-decrypt-text-with-node-js
 - https://youtu.be/E9J2VXd-bzE?si=T2bcrJkbdUrttqkU (!important)
-
+- https://youtu.be/p_zsc5XUtuc?si=SQwRHc7GNc1xNnQI (Transition Functions)
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
