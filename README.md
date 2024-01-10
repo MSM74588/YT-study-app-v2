@@ -31,6 +31,7 @@ Bookmarks
 - https://youtu.be/E9J2VXd-bzE?si=T2bcrJkbdUrttqkU (!important)
 - https://youtu.be/p_zsc5XUtuc?si=SQwRHc7GNc1xNnQI (Transition Functions)
 - https://www.vaul-svelte.com/examples (Vaul Drawer Sveltekit)
+- https://github.com/haruaki07/phosphor-svelte (Phosphor icons svelte)
 
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
