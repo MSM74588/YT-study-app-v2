@@ -35,6 +35,7 @@ Bookmarks
 - https://www.youtube.com/watch?v=U8cM_jhmDxA&t=3s
 - https://youtu.be/MoGkX4RvZ38?si=VEY8VpK80tMjGF3W&t=15128
 - https://svelte-motion.gradientdescent.de/layout (svelte motion)
+- https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer/sanitize
 
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
