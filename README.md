@@ -2,17 +2,12 @@
 
 ## Screenshots:
 
-<center>
-  ![Bookmark](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/4a12e002-3d1b-469e-a216-2b67eb6d4b34)
-</center>
+![Bookmark](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/4a12e002-3d1b-469e-a216-2b67eb6d4b34)
 
-<center>
-  ![Video Player(1)](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/8553102a-71ae-48cd-a973-320e3ef371e1)
-</center>
+![Video Player(1)](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/8553102a-71ae-48cd-a973-320e3ef371e1)
 
-<center>
-  ![Home screen](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/4b193d97-5ffd-4f90-9c5c-99acf0fee1be)
-</center>
+![Home screen](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/4b193d97-5ffd-4f90-9c5c-99acf0fee1be)
+
 
 ## Bookmarks:
 
