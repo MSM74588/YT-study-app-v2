@@ -39,7 +39,7 @@ Bookmarks
 
 - Encode text data to UTF8
 - https://convertcodes.com/utf8-encode-decode-convert-string/
-
+- https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encodeInto (USEFUL)
 
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
