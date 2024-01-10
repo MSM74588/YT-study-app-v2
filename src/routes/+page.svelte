@@ -15,6 +15,7 @@
 
     // - https://youtu.be/rsmLu5nmh4g?si=BBnHVl4ZiXjjzdlJ&t=216 (!important)
     //  - https://cheatcode.co/tutorials/how-to-encrypt-and-decrypt-text-with-node-js
+    // - https://youtu.be/E9J2VXd-bzE?si=T2bcrJkbdUrttqkU (!important)
 </script>
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
