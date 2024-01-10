@@ -37,5 +37,9 @@ Bookmarks
 - https://svelte-motion.gradientdescent.de/layout (svelte motion)
 - https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer/sanitize
 
+- Encode text data to UTF8
+- https://convertcodes.com/utf8-encode-decode-convert-string/
+
+
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
