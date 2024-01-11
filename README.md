@@ -44,5 +44,7 @@ Bookmarks
 - Melt UI (wrt shadcn these components looks kinda better) (see the Huntabyte video) (Use Melt UI for <b>Tabs</b>) 
 - https://youtu.be/jwRqiCv6Z9k?si=HgELhOItQq-Qxfgw (Huntabyte meltUI)
 
+- https://youtu.be/3PYdcm-HBiw?si=PDSyaTxQc90E7N0N (Zod Validation)
+
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
