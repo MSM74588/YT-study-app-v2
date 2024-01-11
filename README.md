@@ -41,5 +41,8 @@ Bookmarks
 - https://convertcodes.com/utf8-encode-decode-convert-string/
 - https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encodeInto (USEFUL)
 
+- Melt UI (wrt shadcn these components looks kinda better) (see the Huntabyte video) (Use Melt UI for <b>Tabs</b>) 
+- https://youtu.be/jwRqiCv6Z9k?si=HgELhOItQq-Qxfgw (Huntabyte meltUI)
+
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
