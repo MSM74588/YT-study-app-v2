@@ -46,5 +46,7 @@ Bookmarks
 
 - https://youtu.be/3PYdcm-HBiw?si=PDSyaTxQc90E7N0N (Zod Validation)
 
+- https://youtu.be/3RlBfUQCiAQ?si=_aUaiis5Z3oU-UTk (svelte-animations)
+
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
