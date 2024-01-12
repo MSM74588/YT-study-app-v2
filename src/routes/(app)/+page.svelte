@@ -73,7 +73,20 @@
 
 
 		</div>
-		<div class="w-[400px] bg-[#C7BFBF]" id="right-sidebar"></div>
+		<div class="w-[400px] bg-[#C7BFBF]" id="right-sidebar">
+			<!-- RIGHT SIDEBAR -->
+			<div class="w-full px-4 pt-4" id="search-field">
+				<form action="/"  >
+					<label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+					<div class="relative">
+						<div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-non">
+							<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#97ebd1" viewBox="0 0 256 256"><path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"></path></svg>
+						</div>
+					</div>
+					<input required id="search" type="search" placeholder="Search" class="block w-full focus:outline-none focus:ring-2 ring-red-500 ring-offset-2 px-3 py-2 font-lexend placeholder:text-neutral-600 rounded">
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
 

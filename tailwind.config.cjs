@@ -12,7 +12,8 @@ const config = {
 		extend: {
 			fontFamily: {
 				'header' : "Space Grotesk Variable, sans-serif",
-				'title' : "'Rubik Variable', sans-serif"
+				'title' : "'Rubik Variable', sans-serif",
+				'lexend' : "'Lexend Deca Variable', sans-serif"
 			}
 		}
 	},
