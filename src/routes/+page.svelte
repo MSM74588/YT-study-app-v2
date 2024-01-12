@@ -22,8 +22,8 @@
 	export { className as class };
 
 	const triggers = [
-		{ id: 'tab-1', title: 'Account' },
-		{ id: 'tab-2', title: 'Password' },
+		{ id: 'tab-1', title: 'Bookmarked Videos'},
+		{ id: 'tab-2', title: 'Watch Later' },
 		{ id: 'tab-3', title: 'Settings' }
 	];
 
@@ -48,24 +48,24 @@
 			<div
 				use:melt={$root}
 				class={cn(
-					'flex max-w-[25rem] flex-col overflow-hidden rounded-xl shadow-lg  data-[orientation=vertical]:flex-row',
+					'flex h-full w-full flex-col overflow-hidden rounded-xl shadow-lg  data-[orientation=vertical]:flex-row bg-green-500',
 					className
 				)}
 			>
 				<div
 					use:melt={$list}
-					class="flex shrink-0 overflow-x-auto bg-neutral-100
+					class="flex shrink-0 overflow-x-auto bg-red-600
 			data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r"
 					aria-label="Manage your account"
 				>
 					{#each triggers as triggerItem}
-						<button use:melt={$trigger(triggerItem.id)} class="trigger relative">
+						<button use:melt={$trigger(triggerItem.id)} class="trigger relative bg-green-300">
 							{triggerItem.title}
 							{#if $value === triggerItem.id}
 								<div
 									in:send={{ key: 'trigger' }}
 									out:receive={{ key: 'trigger' }}
-									class="bg-magnum-400 absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full"
+									class="bg-blue-400 absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full"
 								/>
 							{/if}
 						</button>
