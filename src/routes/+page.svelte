@@ -4,6 +4,8 @@
 	import '@fontsource-variable/space-grotesk';
 	import '@fontsource-variable/rubik';
 
+	import '@fontsource-variable/lexend-deca';
+
 	import { cn } from '$lib/utils/style';
 
 	import { createTabs, melt } from '@melt-ui/svelte';
@@ -43,13 +45,13 @@
 				<h1 class="font-title text-lg">Bookmarked Channels:</h1>
 			</div>
 		</div>
-		<div class="flex-grow bg-[#D9D9D9]" id="main">
+		<div class="flex-grow bg-neutral-200 border-x-2 border-neutral-400" id="main">
 			<div use:melt={$root} class={cn('flex flex-col overflow-hidden w-full h-full  data-[orientation=vertical]:flex-row', className,)}>
 
 				<!-- List of tabs -->
-				<div use:melt={$list} class="flex data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r overflow-x-auto justify-center" aria-label="Videos tab">
+				<div use:melt={$list} class="flex data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r overflow-x-auto justify-center border-b-2 border-neutral-400" aria-label="Videos tab">
 					{#each triggers as triggerItem}
-					<button use:melt={$trigger(triggerItem.id)} class="trigger relative bg-blue-500 tab-button">
+					<button use:melt={$trigger(triggerItem.id)} class="trigger relative  tab-button">
 					  {triggerItem.title}
 					  {#if $value === triggerItem.id}
 						<div
@@ -65,7 +67,7 @@
 					TaB 1
 				</div>
 				<div use:melt={$content('tab-2')}>
-					TaB 2
+					<h1 class="text-3xl ">HELLO WORLD, Tab 2</h1>
 				</div>
 			</div>
 
@@ -77,6 +79,11 @@
 
 <style lang="postcss">
 	.trigger {
+	transition: 0.3s;
+
+	font-family: 'Lexend Deca Variable', sans-serif;
+	font-weight: 500;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,10 +92,10 @@
     user-select: none;
  
     border-radius: 0;
-    background-color: theme(colors.neutral.100);
+    background-color: theme(colors.neutral.300);
  
-    color: theme(colors.neutral.900);
-    font-weight: 500;
+    color: theme(colors.neutral.500);
+    
     line-height: 1;
  
     flex: 1;
@@ -106,7 +113,9 @@
     &[data-state='active'] {
       @apply focus:relative;
       background-color: white;
-      background-color: theme(colors.red.100);
+      background-color: theme(colors.neutral.200);
+	  color: theme(colors.red.700);
+	  font-weight: 600;
     }
   }
 </style>

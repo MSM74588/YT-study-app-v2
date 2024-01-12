@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource-variable/lexend-deca": "^5.0.8",
 		"@fontsource-variable/rubik": "^5.0.20",
 		"@fontsource-variable/space-grotesk": "^5.0.16",
 		"@prisma/client": "^5.7.1",
