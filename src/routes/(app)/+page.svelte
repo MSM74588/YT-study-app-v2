@@ -87,22 +87,28 @@
 			<!-- RIGHT SIDEBAR -->
 			<div class="w-full px-4 pt-4" id="search-field">
 				<form action="/">
-					<div class="flex flex-row ring-red-500 has-[:focus]:ring-2 bg-neutral-50 rounded transition-[0.3s] ring-offset-2 ">
-						<label
-							for="search"
-							class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
-						>
-
-						<div class="pointer-events-non inset-y-0 start-0 flex items-center ps-3 ">
-							<MagnifyingGlass class="fill-orange-500"  weight="bold" size="{30}"/>
+					<div class="group">
+						<div class="flex flex-row ring-red-500 has-[:focus]:ring-2 bg-neutral-50 rounded transition-[0.3s] ring-offset-2 group">
+							<label
+								for="search"
+								class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
+							>
+	
+							<div class="pointer-events-non inset-y-0 start-0 flex items-center ps-3 group">
+								<MagnifyingGlass class="fill-orange-500"  weight="bold" size="{30}"/>
+							</div>
+							<input
+								required
+								id="search"
+								type="search"
+								placeholder="Search"
+								class="w-full px-3 py-2 font-lexend  placeholder:text-neutral-600 focus:outline-none bg-transparent"
+								
+							/>
+							
+							
 						</div>
-						<input
-							required
-							id="search"
-							type="search"
-							placeholder="Search"
-							class="w-full px-3 py-2 font-lexend  placeholder:text-neutral-600 focus:outline-none bg-transparent"
-						/>
+						<div class="group-has-[:focus]:visible group-has-[:focus]:translate-y-2 group-has-[:focus]:opacity-100 opacity-0  invisible duration-150 transition-all">Replace with A Select component to add search type (channel/Videos)</div>
 					</div>
 				</form>
 			</div>
