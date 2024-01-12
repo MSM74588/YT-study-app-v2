@@ -37,8 +37,14 @@
 		easing: cubicInOut
 	});
 
+	let searchvalue = ""
 	function redirectToSearch() {
-		goto("/search")
+
+		
+		const encodedQuery = encodeURIComponent(searchvalue);
+		const parameter = "search_query"
+		const path = "/search"
+		goto(`${path}?${parameter}=${encodedQuery}`);
 	}
 </script>
 
@@ -112,6 +118,7 @@
 								placeholder="Search"
 								class="w-full bg-transparent px-3 py-2 font-lexend placeholder:text-neutral-600 focus:outline-none"
 								name="searchfield"
+								bind:value={searchvalue}
 							/>
 						</div>
 						<div
