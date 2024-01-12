@@ -54,7 +54,7 @@
 			>
 				<div
 					use:melt={$list}
-					class="flex shrink-0 overflow-x-auto bg-red-600
+					class="flex shrink-0  overflow-x-auto bg-red-600
 			data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r"
 					aria-label="Manage your account"
 				>
