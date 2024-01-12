@@ -6,6 +6,8 @@
 
 	import '@fontsource-variable/lexend-deca';
 
+	import { goto } from '$app/navigation';
+
 	import { MagnifyingGlass } from 'phosphor-svelte';
 
 	import { cn } from '$lib/utils/style';
@@ -34,15 +36,19 @@
 		duration: 250,
 		easing: cubicInOut
 	});
+
+	function redirectToSearch() {
+		goto("/search")
+	}
 </script>
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
-	<div class="flex h-full w-full flex-row ">
+	<div class="flex h-full w-full flex-row">
 		<div class="w-[350px] bg-[#C7BFBF] px-8 pt-11" id="left-sidebar">
-			<div class="flex flex-row items-baseline gap-2 select-none" id="header">
+			<div class="flex select-none flex-row items-baseline gap-2" id="header">
 				<h1 class="font-header text-4xl font-extrabold tracking-tight">Study App</h1>
-				<div class="px-2  bg-neutral-400 rounded h-5 flex items-center align-middle">
-					<h2 class="font-lexend 	font-bold text-neutral-700 ">v2</h2>
+				<div class="flex h-5 items-center rounded bg-neutral-400 px-2 align-middle">
+					<h2 class="font-lexend font-bold text-neutral-700">v2</h2>
 				</div>
 			</div>
 
@@ -86,29 +92,33 @@
 		<div class="w-[400px] bg-[#C7BFBF]" id="right-sidebar">
 			<!-- RIGHT SIDEBAR -->
 			<div class="w-full px-4 pt-4" id="search-field">
-				<form action="/">
+				<form action="?/search" method="POST" on:submit|preventDefault={redirectToSearch}>
 					<div class="group">
-						<div class="flex flex-row ring-red-500 has-[:focus]:ring-2 bg-neutral-50 rounded transition-[0.3s] ring-offset-2 group">
+						<div
+							class="group flex flex-row rounded bg-neutral-50 ring-red-500 ring-offset-2 transition-[0.3s] has-[:focus]:ring-2"
+						>
 							<label
 								for="search"
 								class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
 							>
-	
-							<div class="pointer-events-non inset-y-0 start-0 flex items-center ps-3 group">
-								<MagnifyingGlass class="fill-orange-500"  weight="bold" size="{30}"/>
+
+							<div class="pointer-events-non group inset-y-0 start-0 flex items-center ps-3">
+								<MagnifyingGlass class="fill-orange-500" weight="bold" size={30} />
 							</div>
 							<input
 								required
 								id="search"
 								type="search"
 								placeholder="Search"
-								class="w-full px-3 py-2 font-lexend  placeholder:text-neutral-600 focus:outline-none bg-transparent"
-								
+								class="w-full bg-transparent px-3 py-2 font-lexend placeholder:text-neutral-600 focus:outline-none"
+								name="searchfield"
 							/>
-							
-							
 						</div>
-						<div class="group-has-[:focus]:visible group-has-[:focus]:translate-y-2 group-has-[:focus]:opacity-100 opacity-0  invisible duration-150 transition-all">Replace with A Select component to add search type (channel/Videos)</div>
+						<div
+							class="invisible opacity-0 transition-all duration-150 group-has-[:focus]:visible group-has-[:focus]:translate-y-2 group-has-[:focus]:opacity-100"
+						>
+							Replace with A Select component to add search type (channel/Videos)
+						</div>
 					</div>
 				</form>
 			</div>
