@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config}*/
+
+import plugin from 'tailwindcss/plugin';
+
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
@@ -13,8 +16,7 @@ const config = {
 			}
 		}
 	},
+}
 
-	plugins: []
-};
 
 module.exports = config;

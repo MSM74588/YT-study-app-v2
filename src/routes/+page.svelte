@@ -23,8 +23,7 @@
 
 	const triggers = [
 		{ id: 'tab-1', title: 'Bookmarked Videos'},
-		{ id: 'tab-2', title: 'Watch Later' },
-		{ id: 'tab-3', title: 'Settings' }
+		{ id: 'tab-2', title: 'Watch Later' }
 	];
 
 	const [send, receive] = crossfade({
@@ -45,78 +44,69 @@
 			</div>
 		</div>
 		<div class="flex-grow bg-[#D9D9D9]" id="main">
-			<div
-				use:melt={$root}
-				class={cn(
-					'flex h-full w-full flex-col overflow-hidden rounded-xl shadow-lg  data-[orientation=vertical]:flex-row bg-green-500',
-					className
-				)}
-			>
-				<div
-					use:melt={$list}
-					class="flex shrink-0  overflow-x-auto bg-red-600
-			data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r"
-					aria-label="Manage your account"
-				>
+			<div use:melt={$root} class={cn('flex flex-col overflow-hidden w-full h-full  data-[orientation=vertical]:flex-row', className,)}>
+
+				<!-- List of tabs -->
+				<div use:melt={$list} class="flex data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r overflow-x-auto justify-center" aria-label="Videos tab">
 					{#each triggers as triggerItem}
-						<button use:melt={$trigger(triggerItem.id)} class="trigger relative bg-green-300">
-							{triggerItem.title}
-							{#if $value === triggerItem.id}
-								<div
-									in:send={{ key: 'trigger' }}
-									out:receive={{ key: 'trigger' }}
-									class="bg-blue-400 absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full"
-								/>
-							{/if}
-						</button>
-					{/each}
+					<button use:melt={$trigger(triggerItem.id)} class="trigger relative bg-blue-500 tab-button">
+					  {triggerItem.title}
+					  {#if $value === triggerItem.id}
+						<div
+						  in:send={{ key: 'trigger' }}
+						  out:receive={{ key: 'trigger' }}
+						  class="absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-red-700"
+						/>
+					  {/if}
+					</button>
+				  {/each}
 				</div>
-				<div use:melt={$content('tab-1')} class="grow bg-white p-5">
-					<p class="mb-5 leading-normal text-neutral-900">
-						Make changes to your account here. Click save when you're done.
-					</p>
-					<fieldset class="mb-4 flex w-full flex-col justify-start">
-						<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="name">
-							Name
-						</label>
-						<input id="name" value="Thomas G. Lopes" />
-					</fieldset>
-
-					<div class="mt-5 flex justify-end">
-						<button class="save">Save changes</button>
-					</div>
+				<div use:melt={$content('tab-1')}>
+					TaB 1
 				</div>
-				<div use:melt={$content('tab-2')} class="grow bg-white p-5">
-					<p class="mb-5 leading-normal text-neutral-900">
-						Change your password here. Click save when you're done.
-					</p>
-					<fieldset class="mb-4 flex w-full flex-col justify-start">
-						<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="new">
-							New password
-						</label>
-						<input id="new" type="password" />
-					</fieldset>
-					<div class="mt-5 flex justify-end">
-						<button class="save">Save changes</button>
-					</div>
-				</div>
-				<div use:melt={$content('tab-3')} class="grow bg-white p-5">
-					<p class="mb-5 leading-normal text-neutral-900">
-						Change your settings here. Click save when you're done.
-					</p>
-
-					<fieldset class="mb-4 flex w-full flex-col justify-start">
-						<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="new">
-							New email
-						</label>
-						<input id="new" type="password" />
-					</fieldset>
-					<div class="mt-5 flex justify-end">
-						<button class="save">Save changes</button>
-					</div>
+				<div use:melt={$content('tab-2')}>
+					TaB 2
 				</div>
 			</div>
+
+
 		</div>
 		<div class="w-[400px] bg-[#C7BFBF]" id="right-sidebar"></div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    cursor: default;
+    user-select: none;
+ 
+    border-radius: 0;
+    background-color: theme(colors.neutral.100);
+ 
+    color: theme(colors.neutral.900);
+    font-weight: 500;
+    line-height: 1;
+ 
+    flex: 1;
+    height: theme(spacing.12);
+    padding-inline: theme(spacing.2);
+ 
+    &:focus {
+      position: relative;
+    }
+ 
+    &:focus-visible {
+      @apply z-10 ring-2;
+    }
+ 
+    &[data-state='active'] {
+      @apply focus:relative;
+      background-color: white;
+      background-color: theme(colors.red.100);
+    }
+  }
+</style>
