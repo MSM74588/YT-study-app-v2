@@ -39,10 +39,10 @@
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
 	<div class="flex h-full w-full flex-row ">
 		<div class="w-[350px] bg-[#C7BFBF] px-8 pt-11" id="left-sidebar">
-			<div class="flex flex-row items-baseline gap-2" id="header">
+			<div class="flex flex-row items-baseline gap-2 select-none" id="header">
 				<h1 class="font-header text-4xl font-extrabold tracking-tight">Study App</h1>
 				<div class="px-2  bg-neutral-400 rounded h-5 flex items-center align-middle">
-					<h2 class="font-lexend 	font-bold text-neutral-700">v2</h2>
+					<h2 class="font-lexend 	font-bold text-neutral-700 ">v2</h2>
 				</div>
 			</div>
 
