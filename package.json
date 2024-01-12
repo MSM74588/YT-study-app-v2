@@ -38,6 +38,8 @@
 		"@fontsource-variable/rubik": "^5.0.20",
 		"@fontsource-variable/space-grotesk": "^5.0.16",
 		"@prisma/client": "^5.7.1",
-		"svelte-legos": "^0.2.2"
+		"clsx": "^2.1.0",
+		"svelte-legos": "^0.2.2",
+		"tailwind-merge": "^2.2.0"
 	}
 }
