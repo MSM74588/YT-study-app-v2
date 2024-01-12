@@ -90,8 +90,8 @@
 							class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
 						>
 
-						<div class="pointer-events-non inset-y-0 start-0 flex items-center ps-3">
-							<MagnifyingGlass color="#AE2983" weight="bold" size="{30}"/>
+						<div class="pointer-events-non inset-y-0 start-0 flex items-center ps-3 ">
+							<MagnifyingGlass class="fill-orange-500"  weight="bold" size="{30}"/>
 						</div>
 						<input
 							required
