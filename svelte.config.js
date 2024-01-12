@@ -1,5 +1,6 @@
 import { preprocessMeltUI, sequence } from '@melt-ui/pp';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { phosphorSvelteOptimize } from "phosphor-svelte/preprocessor"
 import adapter from '@sveltejs/adapter-auto';
 /** @type {import('@sveltejs/kit').Config}*/
 const config = {
@@ -9,6 +10,6 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter()
 	},
-	preprocess: sequence([vitePreprocess({}), preprocessMeltUI()])
+	preprocess: sequence([phosphorSvelteOptimize(), vitePreprocess({}), preprocessMeltUI()])
 };
 export default config;
