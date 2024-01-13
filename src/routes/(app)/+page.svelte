@@ -1,6 +1,9 @@
 <script>
 	// npx svelte-add@latest tailwindcss
 	// https://youtu.be/w2q9caYXgkg?si=d2T1vODeq5bVn55w&t=208
+
+	import { page } from '$app/stores'
+
 	import '@fontsource-variable/space-grotesk';
 	import '@fontsource-variable/rubik';
 
@@ -41,10 +44,17 @@
 	function redirectToSearch() {
 
 		
-		const encodedQuery = encodeURIComponent(searchvalue);
-		const parameter = "search_query"
+		// const encodedQuery = encodeURIComponent(searchvalue);
+		// const parameter = "search_query"
 		const path = "/search"
-		goto(`${path}?${parameter}=${encodedQuery}`);
+		// goto(`${path}?${parameter}=${encodedQuery}`);
+
+		// let PageURL = $page.url
+		// let searchQuery = PageURL.URLSearchParams()
+		// searchQuery.set() 
+
+		$page.url.searchParams.set('search_query',searchvalue); 
+		goto(`${path}?${$page.url.searchParams.toString()}`);
 	}
 </script>
 
