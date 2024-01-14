@@ -1,6 +1,6 @@
 // import type { PageServerLoad } from "./$types"
 
-import { searchYouTube } from '$lib/fetchFunctions/youtube';
+import { searchYouTubeVideo } from '$lib/fetchFunctions/youtube';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ fetch, url }) {
@@ -55,7 +55,20 @@ export async function load({ fetch, url }) {
 			}
 		};
 
+		const getExtractedToken = () => {
+			const pageTokenQuery = extractSearchQuery().find((item) => item.key === 'page_token');
+
+			if (pageTokenQuery) {
+                console.log(pageTokenQuery.value)
+				return pageTokenQuery.value;
+			} else {
+				console.error('Query Parameter Empty');
+				return null;
+			}
+		};
+
 		const query = getExtractedQuery();
+		const nextPageToken = getExtractedToken();
 
 		// const query =  extractSearchQuery().find(item => item.key === 'search_query')?.value;
 		const maxResults = 5;
@@ -70,7 +83,7 @@ export async function load({ fetch, url }) {
 
 		if (extractedQuery) {
 			try {
-				const results = await searchYouTube(query, maxResults);
+				const results = await searchYouTubeVideo(query, maxResults, nextPageToken);
 				return results;
 			} catch (error) {
 				console.error(error);

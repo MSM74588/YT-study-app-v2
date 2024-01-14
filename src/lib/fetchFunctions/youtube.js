@@ -5,17 +5,27 @@ import { YT_API_KEY } from '$env/static/private';
 const yt_api_key = YT_API_KEY;
 
 
-export async function searchYouTube(query, maxResults = 10) {
+export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken) {
 		const apiUrl = new URL('https://www.googleapis.com/youtube/v3/search');
 
 		const params = new URLSearchParams({
 			part: 'snippet',
 			key: yt_api_key,
 			q: query,
-			maxResults: maxResults
+			maxResults: maxResults,
+            order: 'relevance',
+            type: 'video',
+            // nextPageToken: nextPageToken,
 		});
 
+        console.log(`next page token : ${nextPageToken}`)
+        if (nextPageToken) {
+            params.append("pageToken", nextPageToken)
+        }
+
 		apiUrl.search = params.toString();
+        
+        console.log(`API URL: ${apiUrl}`)
 
 		return fetch(apiUrl)
 			.then((response) => {
@@ -25,13 +35,29 @@ export async function searchYouTube(query, maxResults = 10) {
 				return response.json();
 			})
 			.then((data) => {
+
+                console.log(data)
+
 				const searchResults = data.items.map((item) => {
 					return {
 						videoId: item.id.videoId,
 						title: item.snippet.title,
-						thumbnailUrl: item.snippet.thumbnails.default.url
+						thumbnailUrl: item.snippet.thumbnails.high.url,
+                        channelTitle: item.snippet.channelTitle,
+                        publishedTime: item.snippet.publishTime
 					};
 				});
+
+                const pageInfo = {
+                    totalResults: data.pageInfo.totalResults,
+                    resultsPerPage: data.pageInfo.resultsPerPage,
+                };
+
+                const pageToken = {
+                    nextPageToken: data.nextPageToken
+                }
+
+                return { searchResults, pageInfo, pageToken };
 
 				return searchResults;
 			})
