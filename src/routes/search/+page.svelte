@@ -10,64 +10,75 @@
 	// let results = yt_search_result.searchResults;
 
 	let globalSearchResults = [];
-	let nextPageToken = ""
-	let totalResult = ""
-	let eachPageResult = ""
+	let nextPageToken = '';
+	let totalResult = '';
+	let eachPageResult = '';
+	let err = false;
 
-	async function fetchSearchResults(query, page_token){
+	async function fetchSearchResults(query, page_token) {
 		const search_api_route = new URL('/api/search', window.location.origin);
 		const params = new URLSearchParams({
 			search_query: query
-		})
+		});
 
 		if (page_token) {
-			params.append("page_token", page_token)
+			params.append('page_token', page_token);
 		}
-		
-		search_api_route.search = params.toString()
-		const search_api_with_params = search_api_route.toString()
+
+		search_api_route.search = params.toString();
+		const search_api_with_params = search_api_route.toString();
 		try {
-			const res = await fetch(search_api_with_params)
-		const data = await res.json()
-		console.log(data)
-		// console.log(data)
+			const res = await fetch(search_api_with_params);
+			const data = await res.json();
 
-		const searchResults = data.results.searchResults;
-		globalSearchResults = [...globalSearchResults, ...searchResults];
-		
-		nextPageToken = data.results.pageToken.nextPageToken
-		console.log(data.results.pageToken)
+			if (!data.ok) {
+				if (data.status === 403) {
+					throw new Error('Forbidden: Quota Exceeded');
+				} else {
+					throw new Error('Oops, something went wrong');
+				}
+			}
 
-		totalResult = data.results.pageInfo.totalResults
-		eachPageResult = data.results.pageInfo.resultsPerPage
+			err = false;
 
-		return data
+			// console.log(data);
+			// console.log(data)
+
+			const searchResults = data.results.searchResults;
+			globalSearchResults = [...globalSearchResults, ...searchResults];
+
+			nextPageToken = data.results.pageToken.nextPageToken;
+			console.log(data.results.pageToken);
+
+			totalResult = data.results.pageInfo.totalResults;
+			eachPageResult = data.results.pageInfo.resultsPerPage;
+
+			return data;
 		} catch (err) {
-			console.error(err)
+			console.error(err.message);
+			err = true;
 		}
 	}
 
 	onMount(async () => {
-		const url = $page.url
-		const query = url.searchParams.get('search_query') ?? "";
+		const url = $page.url;
+		const query = url.searchParams.get('search_query') ?? '';
 
 		if (query) {
-			fetchSearchResults(query)
+			fetchSearchResults(query);
 		}
 		// console.log(fetchSearchResults())
 	});
 
-	
-
 	// console.log(yt_search_result);
 	// console.log(results);
 
-	function fetchNextResults(){
-		const url = $page.url
-		const query = url.searchParams.get('search_query') ?? "";
+	function fetchNextResults() {
+		const url = $page.url;
+		const query = url.searchParams.get('search_query') ?? '';
 
 		if (query) {
-			fetchSearchResults(query, nextPageToken)
+			fetchSearchResults(query, nextPageToken);
 		}
 	}
 
@@ -103,7 +114,6 @@
 <!-- <p>Next Page token: {yt_search_result.pageToken.nextPageToken}</p> -->
 <!-- <p>{nextPageToken}</p> -->
 
-
 <div class="h-dvh w-dvw px-32">
 	<div class="min-h-full border-x-2 border-neutral-300 bg-neutral-200 px-4 py-3 pt-12">
 		<Logo />
@@ -118,6 +128,10 @@
 				</p>
 			</div>
 		{/each} -->
+
+		{#if err}
+			<h1>error</h1>
+		{/if}
 
 		<div class="grid grid-cols-5 gap-3 py-7">
 			{#each globalSearchResults as result}
@@ -135,18 +149,20 @@
 
 		<div class="py-10 font-lexend">
 			<nav aria-label="navigation">
-				<div class="w-full flex flex-col align-middle items-center gap-5 text-neutral-800">
+				<div class="flex w-full flex-col items-center gap-5 align-middle text-neutral-800">
 					<div class="text-center">
 						<h1>Total results: {totalResult}</h1>
-					<h1>Results each page: {eachPageResult}</h1>
+						<h1>Results each page: {eachPageResult}</h1>
 					</div>
 
-						<button on:click={fetchNextResults} class="gap-3 text-white transition hover:ring-4 ring-0 ring-purple-600  duration-100 active:bg-purple-700 hover:ring-offset-4 flex flex-row items-center py-3 px-32 rounded-lg bg-purple-500">
-							<p>Load More</p>
-							<CaretRight weight="bold" size={18}/>
-						</button>
-					</div>
-				
+					<button
+						on:click={fetchNextResults}
+						class="flex flex-row items-center gap-3 rounded-lg bg-purple-500 px-32 py-3 text-white ring-0 ring-purple-600 transition duration-100 hover:ring-4 hover:ring-offset-4 active:bg-purple-700"
+					>
+						<p>Load More</p>
+						<CaretRight weight="bold" size={18} />
+					</button>
+				</div>
 			</nav>
 		</div>
 	</div>
