@@ -7,16 +7,42 @@ export async function load({fetch, url}) {
     // const search_param = url.searchParams.get('search_query')
     // const queryValue = search_param
 
-    const paramString = url.search.toString()
-    const searchParams = new URLSearchParams(paramString);
+    const extractSearchQuery = () => {
+        const paramString = url.search.toString()
+        const searchParams = new URLSearchParams(paramString);
 
-    console.log(url)
-    if (searchParams.has("search_query")){
-        console.log(searchParams.get("search_query"))
-    } else {
-        console.log("No Mathcing URL Parameter")
+        const parametersArray = [];
+
+        for (const [key, value] of searchParams) {
+            parametersArray.push({ key, value });
+        }
+
+        // const searchQueryString = () => {
+        //     if (searchParams.has("search_query")){
+        //         return 
+        //     }
+        // }
+        // console.log(JSON.stringify(searchParams))
+        // console.log(searchParams)
+
+        console.log(parametersArray)
+
+        return parametersArray;
+
+        
     }
     
+
+    // console.log(url)
+    // if (searchParams.has("search_query")){
+    //     console.log(searchParams.get("search_query"))
+    // } else {
+    //     console.log("No Mathcing URL Parameter")
+    // }
+    
+    return {
+        urlParam: extractSearchQuery()
+    }
 
 }
 
