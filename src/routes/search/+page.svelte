@@ -5,7 +5,9 @@
 	import { onMount } from 'svelte';
 	import Logo from '$lib/components/LogoHeader.svelte';
 
-	import { CaretLeft, CaretRight } from 'phosphor-svelte';
+	import {fade} from 'svelte/transition'
+ 
+	import { CaretDown } from 'phosphor-svelte';
 
 	// let results = yt_search_result.searchResults;
 
@@ -134,7 +136,7 @@
 
 		<div class="grid grid-cols-5 gap-3 py-7">
 			{#each globalSearchResults as result}
-				<div
+				<div transition:fade
 					class="group rounded bg-red-200 p-3 ring-2 ring-orange-600 ring-offset-2 transition duration-100 hover:bg-red-300 hover:ring-4"
 				>
 					<h1 class="font-lexend text-lg">{@html result.title}</h1>
@@ -159,7 +161,7 @@
 						class="flex flex-row items-center gap-3 rounded-lg bg-purple-500 px-32 py-3 text-white ring-0 ring-purple-600 transition duration-100 hover:ring-4 hover:ring-offset-4 active:bg-purple-700"
 					>
 						<p>Load More</p>
-						<CaretRight weight="bold" size={18} />
+						<CaretDown weight="bold" size={18} />
 					</button>
 				</div>
 			</nav>
