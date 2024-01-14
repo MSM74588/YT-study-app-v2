@@ -152,8 +152,8 @@
 			<nav aria-label="navigation">
 				<div class="flex w-full flex-col items-center gap-5 align-middle text-neutral-800">
 					<div class="text-center">
-						<h1>Total results: {totalResult}</h1>
-						<h1>Results each page: {eachPageResult}</h1>
+						<h1>Total results: {totalResult || "0"}</h1>
+						<h1>Results each page: {eachPageResult || "0"}</h1>
 					</div>
 
 					<button
