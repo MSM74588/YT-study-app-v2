@@ -7,5 +7,9 @@
 
 <h1>Search</h1>
 
-<h1>Fetched Data:</h1>
+<h1>Query Parameter:</h1>
 <!-- <p>{urlParam}</p> -->
+
+{#each urlParam as parameter}
+    <p>{parameter.value}</p>
+{/each}
