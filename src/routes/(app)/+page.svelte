@@ -4,10 +4,7 @@
 
 	import { page } from '$app/stores'
 
-	import '@fontsource-variable/space-grotesk';
-	import '@fontsource-variable/rubik';
 
-	import '@fontsource-variable/lexend-deca';
 
 	import { goto } from '$app/navigation';
 
@@ -19,6 +16,8 @@
 
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
+
+	import Logo from '$lib/components/LogoHeader.svelte'
 
 	const {
 		elements: { root, list, content, trigger },
@@ -61,12 +60,8 @@
 <div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
 	<div class="flex h-full w-full flex-row">
 		<div class="w-[350px] bg-[#C7BFBF] px-8 pt-11" id="left-sidebar">
-			<div class="flex select-none flex-row items-baseline gap-2" id="header">
-				<h1 class="font-header text-4xl font-extrabold tracking-tight">Study App</h1>
-				<div class="flex h-5 items-center rounded bg-neutral-400 px-2 align-middle">
-					<h2 class="font-lexend font-bold text-neutral-700">v2</h2>
-				</div>
-			</div>
+			<!-- LOGO -->
+			<Logo />
 
 			<div>
 				<h1 class="font-title text-lg">Bookmarked Channels:</h1>
