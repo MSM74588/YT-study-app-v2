@@ -32,6 +32,7 @@
 			const data = await res.json();
 
 			if (!data.ok) {
+				err = true
 				if (data.status === 403) {
 					throw new Error('Forbidden: Quota Exceeded');
 				} else {
