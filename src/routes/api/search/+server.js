@@ -23,10 +23,8 @@ export const GET = async ({ url }) => {
                         }),
                         { status: 403 }
                     );
-				} else {
-					throw new Error('Oops, something went wrong');
-				}
 			}
+        }
 
 			return new Response(
 				JSON.stringify({

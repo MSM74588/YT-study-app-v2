@@ -32,11 +32,9 @@
 			const data = await res.json();
 
 			if (!data.ok) {
-				err = true
+				err = true;
 				if (data.status === 403) {
 					throw new Error('Forbidden: Quota Exceeded');
-				} else {
-					throw new Error('Oops, something went wrong');
 				}
 			}
 
@@ -152,8 +150,8 @@
 			<nav aria-label="navigation">
 				<div class="flex w-full flex-col items-center gap-5 align-middle text-neutral-800">
 					<div class="text-center">
-						<h1>Total results: {totalResult || "0"}</h1>
-						<h1>Results each page: {eachPageResult || "0"}</h1>
+						<h1>Total results: {totalResult || '0'}</h1>
+						<h1>Results each page: {eachPageResult || '0'}</h1>
 					</div>
 
 					<button
