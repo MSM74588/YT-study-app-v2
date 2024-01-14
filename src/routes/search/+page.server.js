@@ -3,7 +3,7 @@
 import { searchYouTubeVideo } from '$lib/fetchFunctions/youtube';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ fetch, url }) {
+export async function load({ url, params }) {
 	// console.log("SEARCH PAGE")
 	// console.log("PARAMETERS:")
 	// const search_param = url.searchParams.get('search_query')

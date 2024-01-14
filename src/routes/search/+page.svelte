@@ -36,8 +36,8 @@
 		
 
         const route = "/search"
-
-        goto(`${route}?${urlParams.toString()}`,  {replaceState:true, force:true});
+        
+        goto(`${route}?${urlParams.toString()}`,  {replaceState:true, invalidateAll: true});
 	}
 </script>
 
@@ -74,16 +74,20 @@
 
 		<div class="py-10 font-lexend">
 			<nav aria-label="navigation">
-				<div class="flex flex-row font-lexend">
-					<button class="flex flex-row rounded bg-teal-300">
-						<CaretLeft />
-						<p>Previous</p>
-					</button>
-					<button on:click={gotoNextPage} class="flex flex-row rounded bg-teal-300">
-						<p>Next</p>
-						<CaretRight />
-					</button>
-				</div>
+				<div>
+                    <h1>Total results:</h1>
+                    <h1>Results each page:</h1>
+                    <div class="flex flex-row font-lexend">
+                        <button class="flex flex-row rounded bg-teal-300">
+                            <CaretLeft />
+                            <p>Previous</p>
+                        </button>
+                        <button on:click={gotoNextPage} class="flex flex-row rounded bg-teal-300">
+                            <p>Next</p>
+                            <CaretRight />
+                        </button>
+                    </div>
+                </div>
 			</nav>
 		</div>
 	</div>
