@@ -87,7 +87,7 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 50 }}
-		class="z-10 rounded-lg bg-white shadow"
+		class="z-10 rounded-lg bg-white shadow border-2 border-neutral-300 shadow-2xl"
 	>
 		<div use:melt={$arrow} />
 
@@ -95,7 +95,7 @@
 			<div>
 				<h1 class="font-lexend text-neutral-700">Description:</h1>
 				<p
-					class="line-clamp-3 font-lexend text-sm leading-tight transition-all hover:line-clamp-none"
+					class=" text-wrap line-clamp-3 font-lexend text-sm leading-tight transition-all hover:line-clamp-none"
 				>
 					{@html description}
 				</p>
