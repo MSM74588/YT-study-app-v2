@@ -5,8 +5,10 @@
 	import { onMount } from 'svelte';
 	import Logo from '$lib/components/LogoHeader.svelte';
 
-	import {fade} from 'svelte/transition'
- 
+	import { fade } from 'svelte/transition';
+
+	import ThumbnailCards from '$lib/components/ThumbnailCards.svelte';
+
 	import { CaretDown } from 'phosphor-svelte';
 
 	// let results = yt_search_result.searchResults;
@@ -116,7 +118,7 @@
 <!-- <p>{nextPageToken}</p> -->
 
 <div class="h-dvh w-dvw px-32">
-	<div class="min-h-full border-x-2 border-neutral-300 bg-neutral-200 px-4 py-3 pt-12">
+	<div class="min-h-full border-x-2 border-neutral-300 bg-neutral-200 px-9 py-3 pt-12">
 		<Logo />
 
 		<!-- {#each urlParam as parameter}
@@ -136,7 +138,7 @@
 
 		<div class="grid grid-cols-5 gap-3 py-7">
 			{#each globalSearchResults as result}
-				<div transition:fade
+				<!-- <div transition:fade
 					class="group rounded bg-red-200 p-3 ring-2 ring-orange-600 ring-offset-2 transition duration-100 hover:bg-red-300 hover:ring-4"
 				>
 					<h1 class="font-lexend text-lg">{@html result.title}</h1>
@@ -144,7 +146,28 @@
 					<div class="aspect-video transition duration-100 group-hover:scale-110">
 						<img class="rounded" src={result.thumbnailUrl} alt={result.titile} />
 					</div>
-				</div>
+				</div> -->
+
+				<!-- <div class="flex flex-col gap-2">
+					<div>
+						<img class="aspect-video rounded" src={result.thumbnailUrl} alt={result.title} />
+					</div>
+					<div class="flex flex-col gap-[2px]">
+						<h1 class="font-lexend text-base"></h1>
+						<h1 class="font-lexend font-normal text-xs text-neutral-800">ID: <span class="bg-orange-200 px-2 py-[1px] rounded border-red-400 border-2">
+							{result.videoId}
+						</span></h1>
+					</div>
+				</div> -->
+
+				<ThumbnailCards
+					title={result.title}
+					thumbnailUrl={result.thumbnailUrl}
+					videoID={result.videoId}
+					published_date={result.publishedTime}
+					description={result.description}
+					channel_title={result.channelTitle}
+				/>
 			{/each}
 		</div>
 

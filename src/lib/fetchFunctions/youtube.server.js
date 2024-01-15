@@ -42,9 +42,10 @@ export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken) 
 					return {
 						videoId: item.id.videoId,
 						title: item.snippet.title,
-						thumbnailUrl: item.snippet.thumbnails.high.url,
+						thumbnailUrl: item.snippet.thumbnails.medium.url,
                         channelTitle: item.snippet.channelTitle,
-                        publishedTime: item.snippet.publishTime
+                        publishedTime: item.snippet.publishTime,
+						description: item.snippet.description,
 					};
 				});
 
