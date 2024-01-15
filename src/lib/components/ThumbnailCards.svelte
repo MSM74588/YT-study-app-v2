@@ -87,7 +87,7 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 50 }}
-		class="z-10 rounded-lg bg-white shadow border-2 border-neutral-300 shadow-2xl"
+		class="z-10 rounded-lg bg-white border-2 border-neutral-300 shadow-2xl"
 	>
 		<div use:melt={$arrow} />
 
