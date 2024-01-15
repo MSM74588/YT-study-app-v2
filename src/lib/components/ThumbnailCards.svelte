@@ -2,7 +2,7 @@
 	// @ts-nocheck
 
 	import { createTooltip, melt } from '@melt-ui/svelte';
-	import { fade } from 'svelte/transition';
+	import { fade , blur} from 'svelte/transition';
 	import { Clock } from 'phosphor-svelte';
 
 	/**
@@ -65,8 +65,8 @@
 	});
 </script>
 
-<div class="flex flex-col gap-2" use:melt={$trigger}>
-	<div>
+<div class="flex flex-col gap-2 group" use:melt={$trigger} transition:blur>
+	<div class="w-full group-hover:outline group-hover:outline-4 outline-0  rounded outline-red-500 transition duration-100 outline-offset-2">
 		<img class="aspect-video rounded" src={thumbnailUrl} alt={title} />
 	</div>
 	<div class="flex flex-col gap-[2px]">
@@ -74,8 +74,8 @@
 			<Clock weight="bold" />
 			<p>{timeAgo}</p>
 		</div>
-		<h1 class="font-lexend text-base">{@html title}</h1>
-		<h1 class="font-lexend text-xs font-normal text-neutral-800">
+		<h1 class="font-lexend text-base group-hover:text-red-600">{@html title}</h1>
+		<h1 class="font-lexend text-xs font-normal text-neutral-800 pt-1">
 			ID: <span class="rounded border-2 border-red-400 bg-orange-200 px-2 py-[1px]">
 				{videoID}
 			</span>
@@ -95,7 +95,7 @@
 			<div>
 				<h1 class="font-lexend text-neutral-700">Description:</h1>
 				<p
-					class=" text-wrap line-clamp-3 font-lexend text-sm leading-tight transition-all hover:line-clamp-none"
+					class="break-words line-clamp-3 font-lexend text-sm leading-tight transition-all hover:line-clamp-none "
 				>
 					{@html description}
 				</p>
@@ -104,7 +104,7 @@
 			<div>
 				<p class="font-lexend text-sm">
 					<span class="underline decoration-2 decoration-pink-500 underline-offset-2">Channel:</span>
-					<span class="rounded border-2 border-pink-400 bg-pink-200 px-2 py-[1px]"
+					<span class="w-full truncate rounded border-2 border-pink-400 bg-pink-200 px-2 py-[1px]"
 						>{@html channel_title}</span
 					>
 				</p>
