@@ -6,7 +6,6 @@
 
 	import { fly, fade } from 'svelte/transition';
 
-
 	import { dateStore, mediaQuery } from 'svelte-legos';
 
 	import { onMount } from 'svelte';
@@ -93,28 +92,30 @@
 	});
 </script>
 
-
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] md:px-[10%]">
 	<div class="flex h-full w-full flex-row">
 		{#if isDivVisible}
-			<div transition:fly={{x: -100, duration: 250}}
-				class="absolute z-50 flex h-dvh w-dvw md:w-auto flex-row md:static md:inline md:h-full"
+			<div
+				transition:fly={{ x: -100, duration: 250 }}
+				class="absolute z-50 flex h-dvh w-dvw flex-row md:static md:inline md:h-full md:w-auto"
 				id="left-sidebar"
-			
 			>
 				<!-- LOGO -->
-				<div class=" h-full w-full lg:w-[350px] bg-[#C7BFBF] px-8 pt-11">
+				<div class=" h-full w-full bg-[#C7BFBF] px-8 pt-11 lg:w-[350px]">
 					<Logo />
 
 					<div>
 						<h1 class="font-title text-lg">Bookmarked Channels:</h1>
 					</div>
-					
 				</div>
-				<div transition:fade|local class=" md:hidden w-32  bg-black opacity-20 h-full" id="toggleZone" on:click={toggleVisibility}></div>
+				<div
+					transition:fade|local
+					class=" h-full w-32 bg-black opacity-20 md:hidden"
+					id="toggleZone"
+					on:click={toggleVisibility}
+				></div>
 			</div>
 		{/if}
 		<div class="flex flex-grow flex-col border-x-2 border-neutral-400 bg-neutral-200" id="main">
@@ -207,6 +208,8 @@
 		height: theme(spacing.12);
 		padding-inline: theme(spacing.2);
 
+		white-space: nowrap;
+		overflow: hidden;
 		&:focus {
 			position: relative;
 		}
