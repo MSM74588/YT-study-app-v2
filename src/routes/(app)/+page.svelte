@@ -2,13 +2,33 @@
 	// npx svelte-add@latest tailwindcss
 	// https://youtu.be/w2q9caYXgkg?si=d2T1vODeq5bVn55w&t=208
 
-	import { page } from '$app/stores'
+	import { page } from '$app/stores';
+
+	import { fly, fade } from 'svelte/transition';
 
 
+	import { dateStore, mediaQuery } from 'svelte-legos';
+
+	import { onMount } from 'svelte';
+
+	// @ts-ignore
+
+	let isDivVisible = false;
+
+	const toggleVisibility = () => {
+		isDivVisible = !isDivVisible;
+	};
+
+	const isWideScreen = mediaQuery('(min-width: 600px)');
+
+	onMount(() => {
+		// Set initial visibility based on the media query
+		isDivVisible = $isWideScreen;
+	});
 
 	import { goto } from '$app/navigation';
 
-	import { MagnifyingGlass } from 'phosphor-svelte';
+	import { Television } from 'phosphor-svelte';
 
 	import { cn } from '$lib/utils/style';
 
@@ -17,7 +37,40 @@
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
 
-	import Logo from '$lib/components/LogoHeader.svelte'
+	import Logo from '$lib/components/LogoHeader.svelte';
+	import Searchbar from '$lib/components/home/searchbar.svelte';
+
+	let nickname = 'MandraSaptak';
+
+	let time = $dateStore;
+	let dayNumber = time.getDay();
+	const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const dayName = dayNames[dayNumber];
+
+	function getTimeOfDay() {
+		const currentHour = time.getHours();
+
+		if (currentHour >= 17) {
+			return 'Evening';
+		} else if (currentHour >= 12) {
+			return 'Afternoon';
+		} else {
+			return 'Morning';
+		}
+	}
+
+	// Example usage
+	const timeOfDay = getTimeOfDay();
+
+	function getCurrentFormattedDate() {
+		const options = { year: 'numeric', month: 'long', day: 'numeric' };
+		// @ts-ignore
+		const formattedDate = time.toLocaleDateString('en-US', options);
+		return formattedDate;
+	}
+
+	// Example usage
+	const currentDate = getCurrentFormattedDate();
 
 	const {
 		elements: { root, list, content, trigger },
@@ -38,101 +91,92 @@
 		duration: 250,
 		easing: cubicInOut
 	});
-
-	let searchvalue = ""
-	function redirectToSearch() {
-
-		
-		// const encodedQuery = encodeURIComponent(searchvalue);
-		// const parameter = "search_query"
-		const path = "/search"
-		// goto(`${path}?${parameter}=${encodedQuery}`);
-
-		// let PageURL = $page.url
-		// let searchQuery = PageURL.URLSearchParams()
-		// searchQuery.set() 
-
-		$page.url.searchParams.set('search_query',searchvalue); 
-		goto(`${path}?${$page.url.searchParams.toString()}`);
-	}
 </script>
 
-<div class="h-dvh w-dvw bg-[#AF9C9C] px-[10%]">
-	<div class="flex h-full w-full flex-row">
-		<div class="w-[350px] bg-[#C7BFBF] px-8 pt-11" id="left-sidebar">
-			<!-- LOGO -->
-			<Logo />
 
-			<div>
-				<h1 class="font-title text-lg">Bookmarked Channels:</h1>
-			</div>
-		</div>
-		<div class="flex-grow border-x-2 border-neutral-400 bg-neutral-200" id="main">
-			<div
-				use:melt={$root}
-				class={cn(
-					'flex h-full w-full flex-col overflow-hidden  data-[orientation=vertical]:flex-row',
-					className
-				)}
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+
+<div class="h-dvh w-dvw bg-[#AF9C9C] md:px-[10%]">
+	<div class="flex h-full w-full flex-row">
+		{#if isDivVisible}
+			<div transition:fly={{x: -100, duration: 250}}
+				class="absolute z-50 flex h-dvh w-dvw md:w-auto flex-row md:static md:inline md:h-full"
+				id="left-sidebar"
+			
 			>
-				<!-- List of tabs -->
-				<div
-					use:melt={$list}
-					class="flex justify-center overflow-x-auto border-b-2 border-neutral-400 data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r"
-					aria-label="Videos tab"
-				>
-					{#each triggers as triggerItem}
-						<button use:melt={$trigger(triggerItem.id)} class="trigger tab-button relative">
-							{triggerItem.title}
-							{#if $value === triggerItem.id}
-								<div
-									in:send={{ key: 'trigger' }}
-									out:receive={{ key: 'trigger' }}
-									class="absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-red-700"
-								/>
-							{/if}
-						</button>
-					{/each}
+				<!-- LOGO -->
+				<div class=" h-full w-full lg:w-[350px] bg-[#C7BFBF] px-8 pt-11">
+					<Logo />
+
+					<div>
+						<h1 class="font-title text-lg">Bookmarked Channels:</h1>
+					</div>
+					
 				</div>
-				<div use:melt={$content('tab-1')}>TaB 1</div>
-				<div use:melt={$content('tab-2')}>
-					<h1 class="text-3xl">HELLO WORLD, Tab 2</h1>
+				<div transition:fade|local class=" md:hidden w-32  bg-black opacity-20 h-full" id="toggleZone" on:click={toggleVisibility}></div>
+			</div>
+		{/if}
+		<div class="flex flex-grow flex-col border-x-2 border-neutral-400 bg-neutral-200" id="main">
+			<div class="flex flex-col gap-2 px-4 pt-6 md:hidden" id="mobile-ui">
+				<!-- MOBILE UI -->
+
+				<div>
+					<button class="" on:click={toggleVisibility}>
+						<Television size={25} weight="bold" />
+					</button>
+				</div>
+				<div class="flex flex-col gap-2">
+					<h1 class="font-lexend text-2xl font-semibold">
+						<span class="block">Good {timeOfDay},</span><span class="block">{nickname}</span>
+					</h1>
+
+					<h1 class="font-lexend text-sm font-semibold leading-tight text-zinc-600">
+						{dayName}, {currentDate}
+					</h1>
+				</div>
+				<div>
+					<Searchbar />
+				</div>
+			</div>
+			<div>
+				<div
+					use:melt={$root}
+					class={cn(
+						'flex h-full w-full flex-col overflow-hidden  data-[orientation=vertical]:flex-row',
+						className
+					)}
+				>
+					<!-- List of tabs -->
+					<div
+						use:melt={$list}
+						class="flex justify-center overflow-x-auto border-b-2 border-neutral-400 text-sm data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-r"
+						aria-label="Videos tab"
+					>
+						{#each triggers as triggerItem}
+							<button use:melt={$trigger(triggerItem.id)} class="trigger tab-button relative">
+								{triggerItem.title}
+								{#if $value === triggerItem.id}
+									<div
+										in:send={{ key: 'trigger' }}
+										out:receive={{ key: 'trigger' }}
+										class="absolute bottom-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-red-700"
+									/>
+								{/if}
+							</button>
+						{/each}
+					</div>
+					<div use:melt={$content('tab-1')}>TaB 1</div>
+					<div use:melt={$content('tab-2')}>
+						<h1 class="text-3xl">HELLO WORLD, Tab 2</h1>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="w-[400px] bg-[#C7BFBF]" id="right-sidebar">
+		<div class="hidden w-[400px] bg-[#C7BFBF] md:inline" id="right-sidebar">
 			<!-- RIGHT SIDEBAR -->
 			<div class="w-full px-4 pt-4" id="search-field">
-				<form action="?/search" method="POST" on:submit|preventDefault={redirectToSearch}>
-					<div class="group">
-						<div
-							class="group flex flex-row rounded bg-neutral-50 ring-red-500 ring-offset-2 transition-[0.3s] has-[:focus]:ring-2"
-						>
-							<label
-								for="search"
-								class="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label
-							>
-
-							<div class="pointer-events-non group inset-y-0 start-0 flex items-center ps-3">
-								<MagnifyingGlass class="fill-orange-500" weight="bold" size={30} />
-							</div>
-							<input
-								required
-								id="search"
-								type="search"
-								placeholder="Search"
-								class="w-full bg-transparent px-3 py-2 font-lexend placeholder:text-neutral-600 focus:outline-none"
-								name="searchfield"
-								bind:value={searchvalue}
-							/>
-						</div>
-						<div
-							class="invisible opacity-0 transition-all duration-150 group-has-[:focus]:visible group-has-[:focus]:translate-y-2 group-has-[:focus]:opacity-100"
-						>
-							Replace with A Select component to add search type (channel/Videos)
-						</div>
-					</div>
-				</form>
+				<Searchbar />
 			</div>
 		</div>
 	</div>

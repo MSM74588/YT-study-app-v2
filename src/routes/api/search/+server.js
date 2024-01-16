@@ -2,7 +2,7 @@
 import { searchYouTubeVideo } from '$lib/fetchFunctions/youtube.server';
 
 export const GET = async ({ url }) => {
-	const maxResults = Number(url.searchParams.get('limit') ?? '10');
+	const maxResults = Number(url.searchParams.get('limit') ?? '30');
 	const query = url.searchParams.get('search_query') ?? '';
 
 	if (url.searchParams.has('search_query')) {
