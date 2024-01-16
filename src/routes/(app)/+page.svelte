@@ -92,8 +92,6 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-
 <div class="h-dvh w-dvw bg-[#AF9C9C] md:px-[10%]">
 	<div class="flex h-full w-full flex-row">
 		{#if isDivVisible}
@@ -110,24 +108,26 @@
 						<h1 class="font-title text-lg">Bookmarked Channels:</h1>
 					</div>
 				</div>
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+
 				<div
 					transition:fade|local
 					class=" h-full w-32 bg-black opacity-20 md:hidden"
 					id="toggleZone"
 					on:click={toggleVisibility}
-				></div>
+				/>
 			</div>
 		{/if}
 		<div class="flex flex-grow flex-col border-x-2 border-neutral-400 bg-neutral-200" id="main">
-			<div class="flex flex-col gap-2 px-4 pt-6 md:hidden" id="mobile-ui">
+			<div class="flex flex-col gap-2 pt-6 md:hidden" id="mobile-ui">
 				<!-- MOBILE UI -->
 
-				<div>
+				<div class="px-4">
 					<button class="" on:click={toggleVisibility}>
 						<Television size={25} weight="bold" />
 					</button>
 				</div>
-				<div class="flex flex-col gap-2">
+				<div class="flex flex-col gap-2 px-4">
 					<h1 class="font-lexend text-2xl font-semibold">
 						<span class="block">Good {timeOfDay},</span><span class="block">{nickname}</span>
 					</h1>
@@ -136,8 +136,25 @@
 						{dayName}, {currentDate}
 					</h1>
 				</div>
-				<div>
+				<div class="px-4">
 					<Searchbar />
+				</div>
+				<div id="swiper">
+					<h1 class="pl-4 font-lexend">Countdowns:</h1>
+					<div class="flex w-full snap-x snap-mandatory flex-row gap-3 overflow-auto py-2 px-4">
+						<div
+							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+						></div>
+						<div
+							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+						></div>
+						<div
+							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+						></div>
+						<div
+							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+						></div>
+					</div>
 				</div>
 			</div>
 			<div>
