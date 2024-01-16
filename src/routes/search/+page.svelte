@@ -7,6 +7,8 @@
 	import ThumbnailCards from '$lib/components/ThumbnailCards.svelte';
 
 	import { CaretDown } from 'phosphor-svelte';
+	import Searchbar from '$lib/components/home/searchbar.svelte';
+
 
 	// let results = yt_search_result.searchResults;
 
@@ -15,6 +17,7 @@
 	let totalResult = '';
 	let eachPageResult = '';
 	let err = false;
+
 
 	async function fetchSearchResults(query, page_token) {
 		const search_api_route = new URL('/api/search', window.location.origin);
@@ -73,15 +76,35 @@
 			fetchSearchResults(query, nextPageToken);
 		}
 	}
+
+	let searchValue = ""
+
+	function research(){
+		const query = searchValue
+
+		if (query) {
+			globalSearchResults = []
+			fetchSearchResults(query);
+		}
+	}
 </script>
-<div class="h-dvh w-dvw px-32">
+<p>{searchValue}</p>
+<div class="h-dvh w-dvw md:px-32">
 	<div class="min-h-full border-x-2 border-neutral-300 bg-neutral-200 px-9 py-3 pt-12">
-		<Logo />
+		<div class="flex flex-col md:flex-row">
+			<div class="grow">
+				<Logo />
+			</div>
+			<div>
+				<Searchbar bind:searchvalue="{searchValue}" on:researchValue={research}/>
+			</div>
+		</div>
+
 		{#if err}
 			<h1>error</h1>
 		{/if}
 
-		<div class="grid grid-cols-5 gap-3 py-7">
+		<div class="grid grid-cold-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 py-7">
 			{#each globalSearchResults as result}
 				<ThumbnailCards
 					title={result.title}

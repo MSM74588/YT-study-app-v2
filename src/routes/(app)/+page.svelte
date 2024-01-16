@@ -90,19 +90,22 @@
 		duration: 250,
 		easing: cubicInOut
 	});
+	
 </script>
 
 <div class="h-dvh w-dvw bg-[#AF9C9C] md:px-[10%]">
 	<div class="flex h-full w-full flex-row">
 		{#if isDivVisible}
 			<div
-				transition:fly={{ x: -100, duration: 250 }}
+				transition:fly={{ x: -100, duration: 240 }}
 				class="absolute z-50 flex h-dvh w-dvw flex-row md:static md:inline md:h-full md:w-auto"
 				id="left-sidebar"
 			>
 				<!-- LOGO -->
 				<div class=" h-full w-full bg-[#C7BFBF] px-8 pt-11 lg:w-[350px]">
-					<Logo />
+					<div in:fade={{ delay: 100 }} out:fade={{ duration: 50 }}>
+						<Logo />
+					</div>
 
 					<div>
 						<h1 class="font-title text-lg">Bookmarked Channels:</h1>
@@ -110,10 +113,10 @@
 				</div>
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 
-				<div
-					transition:fade|local
-					class=" h-full w-32 bg-black opacity-20 md:hidden"
-					id="toggleZone"
+				<button
+					in:fade={{ delay: 240, duration: 100 }}
+					out:fade={{ duration: 1 }}
+					class=" h-full w-24 bg-black opacity-20 md:hidden"
 					on:click={toggleVisibility}
 				/>
 			</div>
@@ -141,18 +144,18 @@
 				</div>
 				<div id="swiper">
 					<h1 class="pl-4 font-lexend">Countdowns:</h1>
-					<div class="flex w-full snap-x snap-mandatory flex-row gap-3 overflow-auto py-2 px-4">
+					<div class="flex w-full snap-x snap-mandatory flex-row gap-3 overflow-auto px-4 py-2">
 						<div
-							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+							class="h-28 min-w-44 snap-center scroll-mx-3 rounded-lg border-2 border-stone-600 bg-stone-400"
 						></div>
 						<div
-							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+							class="h-28 min-w-44 snap-center scroll-mx-3 rounded-lg border-2 border-stone-600 bg-stone-400"
 						></div>
 						<div
-							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+							class="h-28 min-w-44 snap-center scroll-mx-3 rounded-lg border-2 border-stone-600 bg-stone-400"
 						></div>
 						<div
-							class="h-28 min-w-44 snap-center rounded-lg border-2 border-stone-600 bg-stone-400 scroll-mx-3"
+							class="h-28 min-w-44 snap-center scroll-mx-3 rounded-lg border-2 border-stone-600 bg-stone-400"
 						></div>
 					</div>
 				</div>

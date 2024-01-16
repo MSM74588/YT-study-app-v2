@@ -5,7 +5,13 @@
 
 	import { fly } from 'svelte/transition';
 
-	let searchvalue = '';
+    import {createEventDispatcher} from 'svelte'
+    
+    let dispatch = createEventDispatcher()
+
+    // https://youtu.be/yCkYm4zze8I?si=EK8FIRXgEz5EgXGb
+
+	export let searchvalue = '';
 	function redirectToSearch() {
 		// const encodedQuery = encodeURIComponent(searchvalue);
 		// const parameter = "search_query"
@@ -16,12 +22,19 @@
 		// let searchQuery = PageURL.URLSearchParams()
 		// searchQuery.set()
 
-		$page.url.searchParams.set('search_query', searchvalue);
-		goto(`${path}?${$page.url.searchParams.toString()}`);
+        if ($page.route.id == "/search") {
+            dispatch('researchValue', searchvalue)
+            console.log("aready on /search")
+        } else {
+            $page.url.searchParams.set('search_query', searchvalue);
+            goto(`${path}?${$page.url.searchParams.toString()}`);
+        }
 	}
+
 
 	let isSearchFocused = false;
 </script>
+
 
 <form action="?/search" method="POST" on:submit|preventDefault={redirectToSearch}>
 	<div class="group">
