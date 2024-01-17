@@ -30,16 +30,16 @@
 		});
 
 		if (page_token) {
-			params.append('page_token', page_token);
+			params.set('page_token', page_token);
 		}
 		if (type) {
-			params.append('type', type)
+			params.set('type', type)
 		}
 		if (filter) {
-			params.append('filter', filter)
+			params.set('filter', filter)
 		}
 		
-
+		console.log(`MODIFIED PARAMS: ${params}`)
 
 		search_api_route.search = params.toString();
 		
@@ -88,8 +88,8 @@
 
 		// console.log(`FILTTTTER: ${filter}`)
 
-		if (query, type, filter) {
-			fetchSearchResults(query);
+		if (query || type || filter) {
+			fetchSearchResults(query, null,type, filter);
 		}
 	});
 	function fetchNextResults() {

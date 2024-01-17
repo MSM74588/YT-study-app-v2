@@ -12,11 +12,13 @@ export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken, 
 
 		let defaultFilter = 'relevance'
 		let defaultType = 'video'
-		if (!filter.trim().length === 0) {
-			defaultFilter = filter
+		if (filter) {
+			const removeSymbols = str => str.replace(/^[^\w\d]+|[^\w\d]+$/g, '');
+			defaultFilter = removeSymbols(filter)
+			console.log(filter)
 		}
-		if (!type.trim().length === 0) {
-			defaultFilter = type
+		if (type) {
+			defaultType = type
 		}
 
 		console.log(type)
