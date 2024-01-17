@@ -42,8 +42,11 @@
 		"@fontsource-variable/rubik": "^5.0.20",
 		"@fontsource-variable/space-grotesk": "^5.0.16",
 		"@prisma/client": "^5.7.1",
+		"bits-ui": "^0.14.0",
 		"clsx": "^2.1.0",
+		"lucide-svelte": "^0.311.0",
 		"svelte-legos": "^0.2.2",
-		"tailwind-merge": "^2.2.0"
+		"tailwind-merge": "^2.2.0",
+		"tailwind-variants": "^0.1.20"
 	}
 }

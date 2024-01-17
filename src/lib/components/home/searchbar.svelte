@@ -5,11 +5,32 @@
 
 	import { fly } from 'svelte/transition';
 
-    import {createEventDispatcher} from 'svelte'
-    
-    let dispatch = createEventDispatcher()
+	import { createEventDispatcher } from 'svelte';
 
-    // https://youtu.be/yCkYm4zze8I?si=EK8FIRXgEz5EgXGb
+	import * as Select from '$lib/components/ui/select';
+
+	let dispatch = createEventDispatcher();
+
+	// https://youtu.be/yCkYm4zze8I?si=EK8FIRXgEz5EgXGb
+
+	const filters = [
+		{ value: '', label: 'None' },
+		{ value: 'relevance', label: 'Relevance' },
+		{ value: 'date ', label: 'Date ' },
+		{ value: 'rating ', label: 'Rating' },
+		{ value: 'title', label: 'Title' },
+		{ value: 'videoCount', label: 'Video Count' },
+		{ value: 'viewCount', label: 'Views' }
+	];
+
+	const types = [
+		{ value: 'videos', label: 'Videos' },
+		{ value: 'channels', label: 'Channel' },
+		{ value: 'playlists', label: 'Playlists' }
+	];
+
+	let typeValue = '';
+	let filterValue = '';
 
 	export let searchvalue = '';
 	function redirectToSearch() {
@@ -22,17 +43,66 @@
 		// let searchQuery = PageURL.URLSearchParams()
 		// searchQuery.set()
 
-        if ($page.route.id == "/search") {
-            dispatch('researchValue', searchvalue)
-            console.log("aready on /search")
-        } else {
-            $page.url.searchParams.set('search_query', searchvalue);
-            goto(`${path}?${$page.url.searchParams.toString()}`);
-        }
+		if ($page.route.id == '/search') {
+			dispatch('researchValue', searchvalue);
+			console.log('aready on /search');
+		} else {
+			$page.url.searchParams.set('search_query', searchvalue);
+			if (typeValue) {
+				$page.url.searchParams.set('type', typeValue);
+			}
+			if (filterValue) {
+				$page.url.searchParams.set('filter', filterValue);
+			}
+			goto(`${path}?${$page.url.searchParams.toString()}`);
+		}
+	}
+
+	class Timer {
+		/**
+		 * @param {any} callback
+		 * @param {any} seconds
+		 */
+		constructor(callback, seconds) {
+			this.callback = callback;
+			this.seconds = seconds;
+			this.timer = null;
+		}
+
+		start() {
+			this.timer = setInterval(() => {
+				this.seconds -= 1;
+				if (this.seconds === 0) {
+					clearInterval(this.timer);
+					this.callback();
+				}
+			}, 1000);
+		}
+
+		reset() {
+			clearInterval(this.timer);
+			this.seconds = 10;
+			this.start();
+		}
+
+		stop() {
+			clearInterval(this.timer);
+		}
+	}
+
+	let isSearchFocused = false;
+
+
+	// @ts-ignore
+	let timer
+	timer = new Timer(() => {isSearchFocused = false}, 5);
+
+	function searchFocusedTImeout(){
+		timer.start();
 	}
 
 
-	let isSearchFocused = false;
+	
 </script>
 
 
@@ -60,16 +130,51 @@
 					isSearchFocused = true;
 				}}
 				on:blur={() => {
-					isSearchFocused = false;
+					searchFocusedTImeout()
 				}}
 			/>
 		</div>
 		{#if isSearchFocused}
-			<div
-				transition:fly={{y: -15}}
-				class="py-5"
-			>
-				Replace with A Select component to add search type (channel/Videos)
+			<div transition:fly={{ y: -15 }} class="flex flex-row gap-4 py-5">
+				<div class="flex grow flex-row items-center gap-2">
+					<h1 class="font-lexend text-sm text-neutral-700">Filter:</h1>
+					<div class="grow">
+						<Select.Root>
+							<Select.Trigger class="w-full font-lexend text-sm font-light">
+								<Select.Value placeholder="None" />
+							</Select.Trigger>
+							<Select.Content class="w-full">
+								{#each filters as filter}
+									<Select.Item
+										class="px-3 py-2 font-lexend text-sm font-light"
+										value={filter.value}
+										label={filter.label}
+										on:click={() => {filterValue = filter.value; timer.reset()}}>{filter.label}</Select.Item
+									>
+								{/each}
+							</Select.Content>
+						</Select.Root>
+					</div>
+				</div>
+				<div class="flex grow flex-row items-center gap-2">
+					<h1 class="font-lexend text-sm text-neutral-700">Type:</h1>
+					<div class="grow">
+						<Select.Root>
+							<Select.Trigger class="w-full font-lexend text-sm font-light">
+								<Select.Value placeholder="None" />
+							</Select.Trigger>
+							<Select.Content class="w-full font-lexend text-sm font-light">
+								{#each types as type}
+									<Select.Item
+										value={type.value}
+										label={type.label}
+										on:click={() => {typeValue = type.value; timer.reset()}}>{type.label}</Select.Item
+									>
+								{/each}
+							</Select.Content>
+						</Select.Root>
+					</div>
+				</div>
 			</div>
 		{/if}
 	</div>
