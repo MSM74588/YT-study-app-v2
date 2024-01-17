@@ -2,8 +2,11 @@
 	// @ts-nocheck
 
 	import { createTooltip, melt } from '@melt-ui/svelte';
-	import { fade , blur} from 'svelte/transition';
+	import { fade, blur } from 'svelte/transition';
 	import { Clock } from 'phosphor-svelte';
+
+	// import { getContext } from 'svelte';
+	// let playerData = getContext('playerData');
 
 	/**
 	 * @type {any}
@@ -65,8 +68,10 @@
 	});
 </script>
 
-<div class="flex flex-col gap-2 group" use:melt={$trigger} transition:blur>
-	<div class="w-full group-hover:outline group-hover:outline-4 outline-0  rounded outline-red-500 transition duration-100 outline-offset-2">
+<div class="group flex flex-col gap-2" use:melt={$trigger} transition:blur>
+	<div
+		class="w-full rounded outline-0 outline-offset-2 outline-red-500 transition duration-100 group-hover:outline group-hover:outline-4"
+	>
 		<img class="aspect-video rounded" src={thumbnailUrl} alt={title} />
 	</div>
 	<div class="flex flex-col gap-[2px]">
@@ -74,8 +79,10 @@
 			<Clock weight="bold" />
 			<p>{timeAgo}</p>
 		</div>
-		<h1 class="font-lexend text-base group-hover:text-red-600 line-clamp-3 md:line-clamp-none">{@html title}</h1>
-		<h1 class="font-lexend text-xs font-normal text-neutral-800 pt-1">
+		<h1 class="line-clamp-3 font-lexend text-base group-hover:text-red-600 md:line-clamp-none">
+			{@html title}
+		</h1>
+		<h1 class="pt-1 font-lexend text-xs font-normal text-neutral-800">
 			ID: <span class="rounded border-2 border-red-400 bg-orange-200 px-2 py-[1px]">
 				{videoID}
 			</span>
@@ -87,7 +94,7 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 50 }}
-		class="z-10 rounded-lg bg-white border-2 border-neutral-300 shadow-2xl"
+		class="z-10 rounded-lg border-2 border-neutral-300 bg-white shadow-2xl"
 	>
 		<div use:melt={$arrow} />
 
@@ -95,7 +102,7 @@
 			<div>
 				<h1 class="font-lexend text-neutral-700">Description:</h1>
 				<p
-					class="break-words line-clamp-3 font-lexend text-sm leading-tight transition-all hover:line-clamp-none "
+					class="line-clamp-3 break-words font-lexend text-sm leading-tight transition-all hover:line-clamp-none"
 				>
 					{@html description}
 				</p>
@@ -103,7 +110,8 @@
 
 			<div>
 				<p class="font-lexend text-sm">
-					<span class="underline decoration-2 decoration-pink-500 underline-offset-2">Channel:</span>
+					<span class="underline decoration-pink-500 decoration-2 underline-offset-2">Channel:</span
+					>
 					<span class="w-full truncate rounded border-2 border-pink-400 bg-pink-200 px-2 py-[1px]"
 						>{@html channel_title}</span
 					>
