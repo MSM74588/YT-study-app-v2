@@ -2,15 +2,26 @@
 import { searchYouTubeVideo } from '$lib/fetchFunctions/youtube.server';
 
 export const GET = async ({ url }) => {
-	const maxResults = Number(url.searchParams.get('limit') ?? '30');
-	const query = url.searchParams.get('search_query') ?? '';
+	const parameters_url = new URL(url)
+	const maxResults = Number(parameters_url.searchParams.get('limit') ?? '30');
+	const query = parameters_url.searchParams.get('search_query') ?? '';
 
-	if (url.searchParams.has('search_query')) {
+	var filter = parameters_url.searchParams.get("filter") ?? "";
+	console.log(`FILTER: ${filter}`)
+	// !! ISSUE HERE, FILTER is not returning the value, URL only returns searchquery value
+
+	if (parameters_url.searchParams.has('search_query')) {
 		console.log(maxResults);
-		const page_token = url.searchParams.get('page_token') ?? '';
+
+		console.log(parameters_url)
+		const page_token = parameters_url.searchParams.get('page_token') ?? "";
+		var  type = parameters_url.searchParams.get('type') ?? "";
+		
+
+
 
 		try {
-			const results = await searchYouTubeVideo(query, maxResults, page_token);
+			const results = await searchYouTubeVideo(query, maxResults, page_token, type, filter);
 
 			if (!results.ok) {
                 console.log(results.status)
@@ -25,9 +36,10 @@ export const GET = async ({ url }) => {
                     );
 			}
         }
-
+			
 			return new Response(
 				JSON.stringify({
+					type: results.type,
 					message: results.status,
 					maxResults: maxResults,
 					page_token: page_token,

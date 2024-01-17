@@ -5,16 +5,30 @@ import { YT_API_KEY } from '$env/static/private';
 const yt_api_key = YT_API_KEY;
 
 
-export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken) {
+export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken, type, filter) {
 		const apiUrl = new URL('https://www.googleapis.com/youtube/v3/search');
+
+		console.log(query)
+
+		let defaultFilter = 'relevance'
+		let defaultType = 'video'
+		if (!filter.trim().length === 0) {
+			defaultFilter = filter
+		}
+		if (!type.trim().length === 0) {
+			defaultFilter = type
+		}
+
+		console.log(type)
+
 
 		const params = new URLSearchParams({
 			part: 'snippet',
 			key: yt_api_key,
 			q: query,
 			maxResults: maxResults,
-            order: 'relevance',
-            type: 'video',
+            order: defaultFilter,
+            type: defaultType
             // nextPageToken: nextPageToken,
 		});
 
@@ -40,6 +54,7 @@ export async function searchYouTubeVideo(query, maxResults = 10, nextPageToken) 
 
 				const searchResults = data.items.map((item) => {
 					return {
+						type: type,
 						videoId: item.id.videoId,
 						title: item.snippet.title,
 						thumbnailUrl: item.snippet.thumbnails.medium.url,

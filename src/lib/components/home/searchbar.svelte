@@ -29,8 +29,8 @@
 		{ value: 'playlists', label: 'Playlists' }
 	];
 
-	let typeValue = '';
-	let filterValue = '';
+	export let typeValue = '';
+	export let filterValue = '';
 
 	export let searchvalue = '';
 	function redirectToSearch() {

@@ -18,22 +18,42 @@
 	let eachPageResult = '';
 	let err = false;
 
+	let searchValue = ""
+	let typeValue = '';
+	let filterValue = '';
 
-	async function fetchSearchResults(query, page_token) {
+
+	async function fetchSearchResults(query, page_token, type, filter) {
 		const search_api_route = new URL('/api/search', window.location.origin);
 		const params = new URLSearchParams({
-			search_query: query
+			search_query: query,
 		});
 
 		if (page_token) {
 			params.append('page_token', page_token);
 		}
+		if (type) {
+			params.append('type', type)
+		}
+		if (filter) {
+			params.append('filter', filter)
+		}
+		
+
 
 		search_api_route.search = params.toString();
+		
 		const search_api_with_params = search_api_route.toString();
 		try {
+
+			if ($page.url.searchParams.has("type")) {
+				console.log(`HAS TYPPPPPPPEEE: ${$page.url.searchParams.has("type")}`)
+			}
+			
 			const res = await fetch(search_api_with_params);
 			const data = await res.json();
+
+			// console.log(`DATA: ${JSON.stringify(data.results.type)}`)
 
 			if (!data.ok) {
 				err = true;
@@ -63,8 +83,12 @@
 	onMount(async () => {
 		const url = $page.url;
 		const query = url.searchParams.get('search_query') ?? '';
+		const type = url.searchParams.get('type') ?? '';
+		const filter = url.searchParams.get('filter') ?? '';
 
-		if (query) {
+		// console.log(`FILTTTTER: ${filter}`)
+
+		if (query, type, filter) {
 			fetchSearchResults(query);
 		}
 	});
@@ -77,7 +101,6 @@
 		}
 	}
 
-	let searchValue = ""
 
 	function research(){
 		const query = searchValue
@@ -95,7 +118,7 @@
 				<Logo />
 			</div>
 			<div>
-				<Searchbar bind:searchvalue="{searchValue}" on:researchValue={research}/>
+				<Searchbar bind:searchvalue="{searchValue}" bind:typeValue={typeValue} bind:filterValue={filterValue} on:researchValue={research}/>
 			</div>
 		</div>
 
