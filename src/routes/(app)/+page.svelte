@@ -10,6 +10,8 @@
 
 	import { onMount } from 'svelte';
 
+	import Player from '$lib/components/player/main.svelte'
+
 	// @ts-ignore
 
 	let isDivVisible = false;
@@ -202,6 +204,8 @@
 		</div>
 	</div>
 </div>
+
+<Player />
 
 <style lang="postcss">
 	.trigger {
