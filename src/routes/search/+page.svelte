@@ -88,10 +88,9 @@
 		}
 	}
 </script>
-<p>{searchValue}</p>
 <div class="h-dvh w-dvw md:px-32">
 	<div class="min-h-full border-x-2 border-neutral-300 bg-neutral-200 px-9 py-3 pt-12">
-		<div class="flex flex-col md:flex-row">
+		<div class="flex flex-col gap-4 md:flex-row">
 			<div class="grow">
 				<Logo />
 			</div>

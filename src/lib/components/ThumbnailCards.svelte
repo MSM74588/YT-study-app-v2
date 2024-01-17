@@ -74,7 +74,7 @@
 			<Clock weight="bold" />
 			<p>{timeAgo}</p>
 		</div>
-		<h1 class="font-lexend text-base group-hover:text-red-600">{@html title}</h1>
+		<h1 class="font-lexend text-base group-hover:text-red-600 line-clamp-3 md:line-clamp-none">{@html title}</h1>
 		<h1 class="font-lexend text-xs font-normal text-neutral-800 pt-1">
 			ID: <span class="rounded border-2 border-red-400 bg-orange-200 px-2 py-[1px]">
 				{videoID}
