@@ -48,5 +48,7 @@ Bookmarks
 
 - https://youtu.be/3RlBfUQCiAQ?si=_aUaiis5Z3oU-UTk (svelte-animations)
 
+- Daisy UI
+- FormActions => https://youtu.be/3GpZkVBjXfE?si=dRQAQeNYJqszDCdw&t=102
 >  [!TIP]
 > Check out Youtube bookmarks for "Joy Of Code" & "Huntabyte"
