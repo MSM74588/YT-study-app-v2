@@ -8,7 +8,8 @@
 
 ![Bookmark](https://github.com/MSM74588/YT-study-app-v2/assets/48552989/4a12e002-3d1b-469e-a216-2b67eb6d4b34)
 
-
+## IDEA %2:
+- Use actions from Svelte-UI [svelte-ui](https://svelteui.dev/composables/use-click-outside)
 
 ## Bookmarks:
 
